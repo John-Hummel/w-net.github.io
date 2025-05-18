@@ -2,46 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WhisperNet</title>
+  <title>WhisperNet Shell</title>
   <style>
     body {
-      background: #0a0a0a;
-      color: #f0f0f0;
-      font-family: system-ui, sans-serif;
+      background-color: #000;
+      color: #00ff66;
+      font-family: 'Courier New', monospace;
       margin: 0;
       padding: 0;
-      text-align: center;
     }
-    header {
+
+    .terminal {
       padding: 2rem;
-      background: #111;
+      max-width: 900px;
+      margin: auto;
+      white-space: pre-wrap;
     }
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
+
+    .line::after {
+      content: "_";
+      animation: blink 1s step-start infinite;
     }
-    p {
-      color: #aaa;
+
+    @keyframes blink {
+      50% { opacity: 0; }
     }
-    main {
-      padding: 2rem;
+
+    .prompt {
+      color: #00ffaa;
     }
+
     a {
-      color: #55aaff;
+      color: #00ddee;
       text-decoration: none;
-      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>WhisperNet</h1>
-    <p>Encrypted telemetry. Remote execution. Total control.</p>
-  </header>
-  <main>
-    <p>Server Suite: <a href="https://your-gumroad.com/l/whispernet">Buy Now</a></p>
-    <p>Client Agent: <a href="https://github.com/John-Hummel/whispernet-client">GitHub Repo</a></p>
-  </main>
+  <div class="terminal">
+    <div class="line"><span class="prompt">w-net.dev ▓</span> initializing remote daemon...</div>
+    <div class="line"><span class="prompt">w-net.dev ▓</span> status: <strong>connected</strong></div>
+    <div class="line"><span class="prompt">w-net.dev ▓</span> mode: secure telemetry uplink</div>
+    <div class="line"><span class="prompt">w-net.dev ▓</span> client tools: <a href="https://github.com/John-Hummel/whispernet-client" target="_blank">GitHub</a></div>
+    <div class="line"><span class="prompt">w-net.dev ▓</span> license server: <a href="https://your-gumroad.com/l/whispernet" target="_blank">Activate</a></div>
+    <br>
+    <div class="line"><span class="prompt">w-net.dev ▓</span> enter: help()</div>
+  </div>
 </body>
 </html>
+

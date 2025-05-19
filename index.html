@@ -84,6 +84,15 @@
       padding: 1rem;
       border-top: 1px solid #222;
     }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    #typewriter::after {
+      content: "_";
+      animation: blink 1s step-start infinite;
+    }
   </style>
 </head>
 <body>
@@ -94,26 +103,23 @@
   </header>
 
   <main>
-    <section>
+    <section id="terminal-intro">
       <h2>🔐 Initialization</h2>
-      <div class="cmd">daemon --connect --secure</div>
-      <p>Connection established with root control plane. Awaiting commands.</p>
+      <div id="typewriter" class="cmd"></div>
     </section>
 
-    <section>
+    <section id="interface" style="display:none;">
+      <p>Connection established with root control plane. Awaiting commands.</p>
+
       <h2>📦 Deploy Tools</h2>
       <ul>
         <li><a href="https://github.com/John-Hummel/whispernet-client" target="_blank">Client Agent (GitHub)</a></li>
         <li><a href="https://your-gumroad.com/l/whispernet" target="_blank">Server Suite (Purchase)</a></li>
       </ul>
-    </section>
 
-    <section>
       <h2>📊 Live Interface</h2>
       <p>Launch the <a href="/gui">remote metrics GUI</a> to monitor active agents, execute scripts, and enforce system policies.</p>
-    </section>
 
-    <section>
       <h2>🛡 Identity Chain</h2>
       <p>License key activation required. All agents operate under zero-trust handshake.</p>
       <div class="cmd">keygen --request-id</div>
@@ -123,6 +129,26 @@
   <footer>
     © 2024 W-Net Labs · WhisperNet is a registered operation platform.
   </footer>
+
+  <script>
+    const text = "daemon --connect --secure";
+    const el = document.getElementById("typewriter");
+    const ui = document.getElementById("interface");
+    let i = 0;
+
+    function typeNext() {
+      if (i < text.length) {
+        el.textContent += text[i++];
+        setTimeout(typeNext, 70);  // Adjust speed here
+      } else {
+        setTimeout(() => {
+          ui.style.display = "block";
+        }, 400);  // Delay before showing rest
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", typeNext);
+  </script>
 
 </body>
 </html>
